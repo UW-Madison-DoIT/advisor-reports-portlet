@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<portlet-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+    version="2.0">
+
+    <portlet>
+        <portlet-name>AdvisorReports</portlet-name>
+        <portlet-class>org.jasig.springframework.web.portlet.context.ContribDispatcherPortlet</portlet-class>
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>/WEB-INF/context/portlet/advisor-reports.xml</value>
+        </init-param>
+        <expiration-cache>0</expiration-cache>
+        <supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>view</portlet-mode>
+        </supports>
+        <portlet-info>
+            <title>Advisor Reports</title>
+            <short-title>Advisor Reports`</short-title>
+        </portlet-info>
+        <portlet-preferences>
+            <preference>
+              <name>pviUserAttributes</name>
+              <value>wiscedupvi</value>
+            </preference>
+        </portlet-preferences>
+    </portlet>
+    
+    <user-attribute>
+        <name>wiscedupvi</name>
+    </user-attribute>
+    
+    <filter>
+        <filter-name>springSecurityPortletFilterChain</filter-name>
+        <filter-class>org.jasig.springframework.web.portlet.filter.DelegatingPortletFilterProxy</filter-class>
+        <lifecycle>ACTION_PHASE</lifecycle>
+        <lifecycle>EVENT_PHASE</lifecycle>
+        <lifecycle>RENDER_PHASE</lifecycle>
+        <lifecycle>RESOURCE_PHASE</lifecycle>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>springSecurityPortletFilterChain</filter-name>
+        <portlet-name>*</portlet-name>
+    </filter-mapping>
+</portlet-app>

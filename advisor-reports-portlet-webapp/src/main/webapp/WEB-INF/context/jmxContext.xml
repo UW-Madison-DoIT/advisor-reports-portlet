@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2000-2009, Jasig, Inc.
+    See license distributed with this file and available online at
+    https://www.ja-sig.org/svn/jasig-parent/tags/rel-10/license-header.txt
+
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+    
+    <!-- 
+     | Find an existing JMX MBean server or create one if one doesn't already exist. Used for exposing MBeans
+     | from this application.
+     |
+     | http://static.springsource.org/spring/docs/3.1.x/reference/jmx.html#jmx-exporting-mbeanserver
+     +-->
+    <context:mbean-server id="mbeanServer"/> 
+    
+    <bean id="connPoolControlData" class="edu.wisc.commons.httpclient.ConnPoolControlData" />
+
+    <!--
+     | Exporter used to register beans with the mbean server
+     |
+     | http://static.springsource.org/spring/docs/3.1.x/reference/jmx.html#jmx-exporting
+     +-->
+    <bean id="jmxAdapter" class="org.springframework.jmx.export.MBeanExporter">
+        <property name="server" ref="mbeanServer" />
+        <property name="ensureUniqueRuntimeObjectNames" value="true" />
+        <property name="assembler" ref="mbeanInfoAssembler" />
+        <property name="beans">
+            <map>
+                <entry key="AdvisorReportsPortlet:section=WebServices,name=HttpConnectionPool" value-ref="connPoolControlData"/>
+            </map>
+        </property>
+    </bean>  
+    
+    <!-- 
+     | Control which methods of the exposed beans are actually avaialble via JMX
+     |
+     | http://static.springsource.org/spring/docs/3.1.x/reference/jmx.html#jmx-interface-assembler
+     +-->
+    <bean id="mbeanInfoAssembler" class="org.springframework.jmx.export.assembler.MethodExclusionMBeanInfoAssembler">
+        <property name="ignoredMethodMappings">
+            <props>
+            </props>
+        </property>
+    </bean>
+
+    <!--
+     | Call a static method from EhCache to expose their MBean data into the mbeanServer
+     +-->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass" value="net.sf.ehcache.management.ManagementService" />
+        <property name="targetMethod" value="registerMBeans" />
+        <property name="arguments">
+            <list>
+                <ref bean="cacheManager" />
+                <ref bean="mbeanServer" />
+                <value>true</value>
+                <value>true</value>
+                <value>true</value>
+                <value>true</value>
+            </list>
+        </property>
+    </bean>
+</beans>
