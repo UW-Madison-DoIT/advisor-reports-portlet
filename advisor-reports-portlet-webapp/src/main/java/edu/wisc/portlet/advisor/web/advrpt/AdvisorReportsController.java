@@ -36,7 +36,7 @@ import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 
 import edu.wisc.cypress.dao.advrpt.AdvisorReportDao;
 import edu.wisc.cypress.dm.advrpt.AdvisorReports;
-import edu.wisc.portlet.advisor.security.PviUtils;
+import edu.wisc.web.security.portlet.primaryattr.PrimaryAttributeUtils;
 
 /**
  * @author Eric Dalquist
@@ -65,7 +65,7 @@ public class AdvisorReportsController {
 
     @ResourceMapping("advisorReports")
     public String getAdvisorReports(ModelMap modelMap) {
-        final String pvi = PviUtils.getPvi();
+        final String pvi = PrimaryAttributeUtils.getPrimaryId();
         
         final AdvisorReports advisorReports = this.advisorReportDao.getAdvisorReports(pvi);
 
@@ -79,7 +79,7 @@ public class AdvisorReportsController {
             @RequestParam("docId") String docId, 
             ResourceResponse response) {
 
-        final String pvi = PviUtils.getPvi();
+        final String pvi = PrimaryAttributeUtils.getPrimaryId();
         this.advisorReportDao.getAdvisorReport(pvi, docId, new PortletResourceProxyResponse(response, ignoredProxyHeaders));
     }
 }
