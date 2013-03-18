@@ -40,7 +40,7 @@ public class AdvisorReportDaoIT {
     protected void verifyStatement(MockProxyResponse response) {
         final byte[] content = response.getContentAsByteArray();
         assertNotNull(content);
-        assertEquals(1652, content.length);
+        assertEquals(138096, content.length);
     }
     
     @Test
