@@ -19,7 +19,7 @@
 
 package edu.wisc.cypress.dao.advrpt;
 
-import org.springframework.web.client.ExtendedRestOperations.ProxyResponse;
+import org.jasig.springframework.web.client.ExtendedRestOperations.ProxyResponse;
 
 import edu.wisc.cypress.dm.advrpt.AdvisorReports;
 
