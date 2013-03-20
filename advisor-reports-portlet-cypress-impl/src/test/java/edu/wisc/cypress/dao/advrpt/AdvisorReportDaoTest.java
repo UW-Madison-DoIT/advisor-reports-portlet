@@ -77,7 +77,7 @@ public class AdvisorReportDaoTest extends AdvisorReportDaoIT {
     protected void verifyStatement(MockProxyResponse response) {
         final byte[] content = response.getContentAsByteArray();
         assertNotNull(content);
-        assertEquals(313, content.length);
+        assertEquals(1175, content.length);
     }
 
 
