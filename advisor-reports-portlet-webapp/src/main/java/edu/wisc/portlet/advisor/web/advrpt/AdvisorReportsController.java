@@ -80,6 +80,7 @@ public class AdvisorReportsController {
             ResourceResponse response) {
 
         final String pvi = PrimaryAttributeUtils.getPrimaryId();
+        response.setProperty("Content-Disposition", "inline; filename=advisor_report.pdf");
         this.advisorReportDao.getAdvisorReport(pvi, docId, new PortletResourceProxyResponse(response, ignoredProxyHeaders));
     }
 }
