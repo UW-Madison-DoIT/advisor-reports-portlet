@@ -29,7 +29,11 @@
       <a href="${helpUrl}" target="_blank">Help</a>
     </div>
   </div>
-  <hrs:notification/>
+  <c:if test="${not empty prefs['notification'][0]}">
+   <div class="fl-widget hrs-notification-wrapper">
+      <div class="hrs-notification-content">${prefs['notification'][0]}</div>
+   </div>
+  </c:if>
     <div id="${n}advisor-report-statements" class="advisor-report-statements">
       <div class="advisor-report-header">
       </div>
