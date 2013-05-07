@@ -22,10 +22,53 @@
         <url>https://github.com/UW-Madison-DoIT/advisor-reports-portlet</url>
     </scm>
     
+    <distributionManagement>
+        <repository>
+            <id>code.doit-uw-releases</id>
+            <name>code.doit-uw-releases</name>
+            <url>https://code.doit.wisc.edu/maven/content/repositories/uw-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>code.doit-uw-snapshots</id>
+            <name>code.doit-uw-snapshots</name>
+            <url>https://code.doit.wisc.edu/maven/content/repositories/uw-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+    
     <repositories>
         <repository>
             <id>code.doit-public-releases</id>
-            <url>https://code.doit.wisc.edu/maven/content/repositories/public-releases/</url>
+            <name>code.doit-public-releases</name>
+            <url>https://code.doit.wisc.edu/maven/content/repositories/public-releases</url>
+        </repository>
+        <repository>
+            <id>code.doit-public-snapshots</id>
+            <name>code.doit-public-snapshots</name>
+            <url>https://code.doit.wisc.edu/maven/content/repositories/public-snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>code.doit-uw-releases</id>
+            <name>code.doit-uw-releases</name>
+            <url>https://code.doit.wisc.edu/maven/content/repositories/uw-releases</url>
+        </repository>
+        <repository>
+            <id>code.doit-release-proxies</id>
+            <name>code.doit-release-proxies</name>
+            <url>https://code.doit.wisc.edu/maven/content/groups/release-proxies</url>
+        </repository>
+        <repository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
     </repositories>
 
