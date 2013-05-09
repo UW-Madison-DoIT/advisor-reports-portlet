@@ -3,8 +3,8 @@
 
     <parent>
         <groupId>edu.wisc.doit.code</groupId>
-        <artifactId>shared-tools-public-parent</artifactId>
-        <version>3</version>
+        <artifactId>shared-tools-uw-parent</artifactId>
+        <version>7</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
